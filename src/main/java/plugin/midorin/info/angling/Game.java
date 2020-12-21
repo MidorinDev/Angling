@@ -60,13 +60,14 @@ public class Game
         {
             public void run()
             {
-                if ((countup % 60) == 0) m=m+1;
-                Scoreboards.setTime(m, countup - m * 60);
+                if (!(countup == 0) && (countup % 60) == 0) m=m+1;
+                if (countup >= 60) Scoreboards.setTime(m, countup - m * 60);
+                else Scoreboards.setTime(m, countup);
                 Scoreboards.objective.getScoreboard().resetScores(Scoreboards.players.getEntry());
                 Scoreboards.players = Scoreboards.objective.getScore(ChatColor.RED + "  参加人数:  " + ChatColor.WHITE + "0人");
                 Scoreboards.players.setScore(-4);
 
-                if (countup == 0)
+                if (countup == 600)
                 {
                     finish();
                 }
